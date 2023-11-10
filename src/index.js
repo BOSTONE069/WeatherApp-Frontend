@@ -22,9 +22,5 @@ root.render(
         }
       }}
     />
-  </AppContextProvider>
- 
-    
+  </AppContextProvider>  
 );
-
-
