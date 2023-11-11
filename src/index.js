@@ -22,5 +22,5 @@ root.render(
         }
       }}
     />
-  </AppContextProvider>  
+  </AppContextProvider> 
 );

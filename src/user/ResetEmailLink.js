@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const ResetEmailLink = () => {
-  return (
-    <div>
-      Forgot Password Page
-    </div>
-  )
-}
+  return <div>Forgot Password Page</div>;
+};
 
-export default ResetEmailLink
+export default ResetEmailLink;
