@@ -11,6 +11,19 @@ const frameResponse = (reqStatus = 0, reqPayLoad = "Invalid request. Please try 
   payLoad: reqPayLoad,
 });
 
+/**
+ * The `signUpApi` function sends a POST request to the `/user/signup` endpoint with user information
+ * and returns a response indicating success or failure.
+ * @param firstName - The first name of the user signing up.
+ * @param lastName - The `lastName` parameter is the last name of the user signing up for an account.
+ * @param username - The `username` parameter is a string that represents the username of the user
+ * signing up for an account.
+ * @param phone - The `phone` parameter is used to pass the user's phone number during the sign-up
+ * process.
+ * @param emailId - The emailId parameter is the email address of the user signing up for an account.
+ * @param password - The password parameter is the user's password for their account.
+ * @returns a response object.
+ */
 const signUpApi = async (firstName, lastName, username, phone, emailId, password) => {
   let response = frameResponse();
 
