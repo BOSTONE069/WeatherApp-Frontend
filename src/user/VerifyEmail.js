@@ -5,21 +5,28 @@ import * as Yup from "yup";
 
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
+import { verifyEmailApi } from "../util/ApiUtil";
 
 const VerifyEmail = () => {
   const { verificationCode } = useParams();
-  let navigate = useNavigate();
+  let navigate = useNavigate(); //userNavigate hook which helps us to re-direct to the respective route
 
   const onFormSubmit = async (values) => {
-    console.log(values);
-    toast("Email verification code is present in console.log");
-  };
+    const apiResponse = await verifyEmailApi(values.verificationCode);
 
+    if (apiResponse.status === 1) {
+      navigate("/login");
+      toast("Congratulations your email has been successfully verified");
+    } else {
+      toast(apiResponse.payLoad);
+    }
+  };
   const emailVerificationSchema = Yup.object().shape({
     verificationCode: Yup.string().required(
       "Email verification code is required"
     ),
   });
+
   return (
     <div class="flex items-center justify-center min-h-screen p-5 min-w-screen">
       <div class="max-w-xl p-8 text-center text-purple-800 bg-white shadow-xl lg:max-w-3xl rounded-3xl lg:p-12">
