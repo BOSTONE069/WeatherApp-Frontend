@@ -36,6 +36,7 @@ const Login = () => {
     
             appContext.setSession(payLoad);  //storing the token and username into cookies
             console.log(payLoad);
+            navigate("/");
             toast("Login successful");
         } else {
            actions.resetForm(); // reset form
