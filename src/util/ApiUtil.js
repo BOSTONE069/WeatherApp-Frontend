@@ -6,7 +6,10 @@ import { API_BASE_URL } from "../common/constants";
 
 const frameToken = (token) => `Bearer ${token}`;
 
-const frameResponse = (reqStatus = 0, reqPayLoad = "Invalid request. Please try again later.") => ({
+const frameResponse = (
+  reqStatus = 0,
+  reqPayLoad = "Invalid request. Please try again later."
+) => ({
   status: reqStatus,
   payLoad: reqPayLoad,
 });
@@ -24,7 +27,14 @@ const frameResponse = (reqStatus = 0, reqPayLoad = "Invalid request. Please try 
  * @param password - The password parameter is the user's password for their account.
  * @returns a response object.
  */
-const signUpApi = async (firstName, lastName, username, phone, emailId, password) => {
+const signUpApi = async (
+  firstName,
+  lastName,
+  username,
+  phone,
+  emailId,
+  password
+) => {
   let response = frameResponse();
 
   try {
@@ -51,8 +61,6 @@ const signUpApi = async (firstName, lastName, username, phone, emailId, password
     return response;
   }
 };
-
-
 
 export const verifyEmailApi = async (token) => {
   let response = frameResponse();
@@ -114,6 +122,24 @@ export const resetEmailLinkApi = async (email) => {
   }
 };
 
+export const resetPasswordApi = async (token, password) => {
+  let response = frameResponse();
+  try {
+    const url = `${API_BASE_URL}/user/reset?password=${password}`;
+    const headers = { headers: { Authorization: frameToken(token) } };
+    const apiResponse = await axios.post(url, null, headers);
+
+    if (apiResponse.status === 200) {
+      response = frameResponse(1);
+    }
+  } catch (err) {
+    if (err.response) {
+      response = frameResponse(0, err.response.data.message);
+    }
+    console.log(err);
+  } finally {
+    return response;
+  }
+};
 
 export { frameToken, frameResponse, signUpApi };
-
