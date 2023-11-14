@@ -142,4 +142,20 @@ export const resetPasswordApi = async (token, password) => {
   }
 };
 
+export const getWeatherDataApi = async (token, location, save) => {
+  // Build the URL to the weather API endpoints based on the location and save parameters
+  const url = `${API_BASE_URL}/weathers/${location}/${save}`;
+
+  // Set the headers for the HTTP request, including the user's authentication token
+  const headers = {
+    headers: { Authorization: frameToken(token) },
+  };
+
+  //Make a GET request for the API endpoint using axios, passing in the URL and headers
+  const apiResponse = await axios.get(url, headers);
+
+  // Return the response from the API
+  return apiResponse;
+};
+
 export { frameToken, frameResponse, signUpApi };
