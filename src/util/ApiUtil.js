@@ -158,23 +158,51 @@ export const getWeatherDataApi = async (token, location, save) => {
   return apiResponse;
 };
 
-export const getHistoryWeatherDataApi = async (token) => {
-  let response = undefined; // Initialize response variable to undefined
+// export const getHistoryWeatherDataApi = async (token) => {
+//   let response = undefined; // Initialize response variable to undefined
+//   try {
+//     const url = `${API_BASE_URL}/weathers`; // API endpoint to fetch weather data
+//     const headers = { headers: { Authorization: frameToken(token) } }; // pass token in the request headers
+//     const apiResponse = await axios.get(url, headers); //Make API call to fetch weather data
+//     if (apiResponse.status === 200) {
+//       response = apiResponse.data// Check if response status is success                                                     response = apiResponse.data; // If successful, set the response variable to the data r
+//     }
+//   } catch (err) { // Catch any errors that may occur during the API call
+//     if (err.response) {
+//       response = err; // If there is a response, set the response variable to the error object
+//     }
+//     console.log(err); //Log the error in the console
+//   } finally { // Regardless of success or failure, return the response variable
+//     return response;
+//   }
+// };
+
+export async function getHistoryWeatherDataApi(token) {
+  // Define the URL for the API endpoint
+  const apiUrl = `${API_BASE_URL}/weathers`;
+
+  // Create headers object with authentication token
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+
   try {
-    const url = `${API_BASE_URL}/weathers`; // API endpoint to fetch weather data
-    const headers = { headers: { Authorization: frameToken(token) } }; // pass token in the request headers
-    const apiResponse = await axios.get(url, headers); //Make API call to fetch weather data
-    if (apiResponse.status === 200) {
-      response = apiResponse.data// Check if response status is success                                                     response = apiResponse.data; // If successful, set the response variable to the data r
+    // Make a GET request to the API endpoint
+    const response = await axios.get(apiUrl, { headers });
+
+    // If the response status is 200, return the response data
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      // Log an error if the response status is not 200
+      console.error(`Unexpected response status: ${response.status}`);
+      return response; // You may want to handle this differently based on your use case
     }
-  } catch (err) { // Catch any errors that may occur during the API call
-    if (err.response) {
-      response = err; // If there is a response, set the response variable to the error object
-    }
-    console.log(err); //Log the error in the console
-  } finally { // Regardless of success or failure, return the response variable
-    return response;
+  } catch (error) {
+    // Log the error to the console and return the error object
+    console.error('Error fetching weather data:', error);
+    return error; // You may want to handle this differently based on your use case
   }
-};
+}
 
 export { frameToken, frameResponse, signUpApi };
