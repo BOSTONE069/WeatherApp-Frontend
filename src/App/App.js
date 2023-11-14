@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import Login from "./user/Login";
-import ResetEmailLink from "./user/ResetEmailLink";
-import ResetPassword from "./user/ResetPassword";
-import Signup from "./user/Signup";
-import VerifyEmail from "./user/VerifyEmail";
+import Login from "../user/Login";
+import ResetEmailLink from "../user/ResetEmailLink";
+import ResetPassword from "../user/ResetPassword";
+import Signup from "../user/Signup";
+import VerifyEmail from "../user/VerifyEmail";
 
 const App = () => {
   return (
