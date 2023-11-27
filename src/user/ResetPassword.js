@@ -15,6 +15,16 @@ const ResetPassword = () => {
 
   let navigate = useNavigate();
 
+  /**
+   * The function `onFormSubmit` sends a request to the `resetPasswordApi` with a verification token
+   * and a new password.
+   * @param values - The `values` parameter is an object that contains the form values submitted by the
+   * user. It typically includes fields like `email`, `password`, `name`, etc. In this case, it seems
+   * like the `values` object contains a `password` field.
+   * @param actions - The `actions` parameter is an object that contains functions to manipulate the
+   * form state. It typically includes functions like `setSubmitting`, `setErrors`, and `setStatus`.
+   * These functions can be used to update the form state based on the result of the API call.
+   */
   const onFormSubmit = async (values, actions) => {
     const apiResponse = await resetPasswordApi(
       verificationToken,

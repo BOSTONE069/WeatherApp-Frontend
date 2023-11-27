@@ -25,6 +25,14 @@ import {
 const Signup = () => {
   const [open, setOpen] = useState(false);
 
+  /**
+   * The `onFormSubmit` function sends a sign-up request to an API with the user's form values.
+   * @param values - An object containing the form values submitted by the user. It includes properties
+   * such as firstName, lastName, username, phone, email, and password.
+   * @param actions - The `actions` parameter is an object that contains functions to manipulate the
+   * form state. It typically includes functions like `setSubmitting`, `setErrors`, and `setStatus`.
+   * These functions can be used to update the form state based on the API response.
+   */
   const onFormSubmit = async (values, actions) => {
     const apiResponse = await signUpApi(
       values.firstName,
